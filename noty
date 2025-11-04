@@ -1,0 +1,5 @@
+#!/bin/bash
+# Noty command wrapper script
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+python3 "$SCRIPT_DIR/noty.py" "$@"
