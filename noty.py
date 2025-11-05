@@ -232,6 +232,8 @@ def main():
         print("  noty --fix          - Fix duplicate IDs (maintenance)")
         print("  noty -h             - Show this help message")
         print("  noty --help         - Show this help message")
+        print()
+        print("Note: To add text starting with '-', use: noty -a \"-- your text\"")
     
     elif command == '-f' or command == '--fix':
         noty.fix_duplicate_ids()
@@ -248,7 +250,13 @@ def main():
         noty.clear_all_notes()
     
     else:
-        # If the command is not recognized, treat it as note text
+        # Check if it looks like a flag (starts with -)
+        if command.startswith('-'):
+            print(f"Error: Unknown flag '{command}'")
+            print("Use 'noty -h' to see available flags.")
+            return
+        
+        # If the command is not recognized and doesn't start with -, treat it as note text
         # This allows "noty <text>" to work as shorthand for "noty add <text>"
         note_text = ' '.join(sys.argv[1:])
         noty.add_note(note_text)
