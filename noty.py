@@ -73,8 +73,11 @@ class NotyManager:
         print(f"Found {len(notes)} note(s):")
         print("─" * 60)
         
-        for note in notes:
+        for i, note in enumerate(notes):
             print(f"  #{note['id']} │ {note['timestamp']} │ {note['text']}")
+            # Add a visual separator between notes (but not after the last one)
+            if i < len(notes) - 1:
+                print("   " + "·" * 58)
         
         print("─" * 60)
     
